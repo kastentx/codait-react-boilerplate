@@ -26,8 +26,20 @@
   top: 0;
 }
 
-/*
+.midRow {
+  margin-top: 10%;
+}
+
 textarea {
   resize: none !important;
+  height: 20vh !important;
+  margin: auto !important;
 }
-*/
+
+#outputArea {
+  cursor: default;
+}
+
+button {
+  margin: 5% auto !important;
+}

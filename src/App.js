@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import logo from './codait-logo.png'
 import { Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap'
-import { predict } from './utils'
+import { predict, cleanMAXResponse } from './utils'
 import './App.css'
 
 const initialState = {
-  inputText: '',
-  modelResponse: ''
+  textInput: '',
+  MAXOutput: ''
 }
 
 class App extends Component {
@@ -17,16 +17,18 @@ class App extends Component {
 
   handleChange = e => {
     this.setState({
-      inputText: e.target.value
+      textInput: e.target.value
     })
   }
 
   handleSubmit = async e => {
     e.preventDefault()
-    console.log(this.state.inputText)
-    const response = await predict(this.state.inputText)
+    const response = cleanMAXResponse(await predict(this.state.textInput))
     console.log(response)
-    this.setState(initialState)
+    this.setState({
+      ...initialState,
+      MAXOutput: response
+    })
   }
 
   render() {
@@ -45,24 +47,24 @@ class App extends Component {
                 method="post"
                 onSubmit={ this.handleSubmit } 
               >
-              <Row> 
                 <FormGroup>
-                  <Label for="inputField">Text Input</Label>
-                  <Input 
-                    type="textarea" 
-                    name="text" 
-                    id="inputField" 
-                    placeholder="enter your input here"
-                    value={ this.state.inputText }
-                    onChange={ this.handleChange } />
+                  <Row> 
+                    <Label for="inputField">Text Input</Label>
+                    <Input 
+                      type="textarea" 
+                      name="text" 
+                      id="inputField" 
+                      placeholder="enter your input here"
+                      value={ this.state.textInput }
+                      onChange={ this.handleChange } />
+                  </Row>
+                  
+                  <Row>
+                    <Button type="submit">
+                      Submit
+                    </Button>
+                  </Row>
                 </FormGroup>
-                </Row>
-                
-                <Row>
-                  <Button type="submit">
-                    Submit
-                  </Button>
-                </Row>
               </Form>
             </Col>
 
@@ -74,7 +76,7 @@ class App extends Component {
                     type="textarea" 
                     name="text" 
                     id="outputArea" 
-                    defaultValue="Sample Response" 
+                    value={ this.state.MAXOutput ? JSON.stringify(this.state.MAXOutput) : null }
                     readOnly />
                 </FormGroup>
               </Form>
