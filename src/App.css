@@ -22,12 +22,15 @@
 }
 
 .topRow {
-  position: absolute;
-  top: 0;
+  margin: 0;
 }
 
 .midRow {
-  margin-top: 10%;
+  margin-top: 2%;
+}
+
+.bottomRow {
+  margin-top: 2%;
 }
 
 textarea {

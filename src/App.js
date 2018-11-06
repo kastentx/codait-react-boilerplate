@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import logo from './codait-logo.png'
-import { Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap'
-import { predict, cleanMAXResponse } from './utils'
+import { Row, Col, Form, FormGroup, Input, Label, Button, FormText } from 'reactstrap'
+import { predict, cleanMAXResponse, modelCheck } from './utils'
 import './App.css'
 
 const initialState = {
@@ -13,6 +13,13 @@ class App extends Component {
   constructor() {
     super()
     this.state = initialState
+  }
+
+  componentDidMount = async () => {
+    const { data } = await modelCheck()
+    this.setState({
+      modelType: data
+    })
   }
 
   handleChange = e => {
@@ -42,6 +49,13 @@ class App extends Component {
           </Row>
 
           <Row className="midRow">
+            { this.state.modelType ? this.state.modelType.name : null }
+          </Row>
+          <Row>
+              <FormText>{ this.state.modelType ? this.state.modelType.description : null }</FormText>
+          </Row>
+
+          <Row className="bottomRow">
             <Col>
               <Form
                 method="post"
@@ -76,7 +90,7 @@ class App extends Component {
                     type="textarea" 
                     name="text" 
                     id="outputArea" 
-                    value={ this.state.MAXOutput ? JSON.stringify(this.state.MAXOutput) : null }
+                    value={ this.state.MAXOutput ? JSON.stringify(this.state.MAXOutput) : '' }
                     readOnly />
                 </FormGroup>
               </Form>

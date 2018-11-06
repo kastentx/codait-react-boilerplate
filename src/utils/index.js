@@ -101,3 +101,20 @@ export const predict = text => {
 export const cleanMAXResponse = response => {
   return response.data.prediction
 }
+
+export const modelCheck = () => {
+  let modelPort
+  let modelIP
+  if (DEPLOY_TYPE === 'KUBE') {
+    modelPort = KUBE_MODEL_PORT
+    modelIP = KUBE_MODEL_IP
+  } else {
+    modelPort = LOCAL_MODEL_PORT
+    modelIP = 'localhost'
+  }
+  return axios({
+    method: 'get',
+    url: `http://${modelIP}:${modelPort}/model/metadata`,
+    config: { headers: { 'Content-Type' : 'application/json', 'accept' : 'application/json' }, timeout: 8000 }
+  })
+}
