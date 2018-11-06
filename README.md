@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This is a simple UI with text-based I/O for interacting with Models from the [Model Asset eXchange](https://developer.ibm.com/code/exchanges/models/).
+
+The name and description of the model is displayed via the `metadata` endpoint used in **MAX** deployable models.
+
+_Image-based input isn't supported yet.. but should be easy to add!_
+
+![sample screenshot](./src/sample-screen.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
