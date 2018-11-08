@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import TextInput from './TextInput'
 import TextOutput from './TextOutput'
 import { Row, Col } from 'reactstrap'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap'
+import { Col, Form, FormGroup, Input, Label } from 'reactstrap'
 
 const TextOutput = props => (
   <Col>

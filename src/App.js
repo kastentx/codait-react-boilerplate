@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ModelData from './components/ModelData'
 import LogoImage from './components/LogoImage'
 import TextIO from './components/TextIO'
+import RawOutput from './components/RawOutput'
 import { predict, cleanMAXResponse, modelCheck } from './utils'
 import './App.css'
 
@@ -37,8 +38,7 @@ class App extends Component {
 
   handleTextSubmit = async e => {
     e.preventDefault()
-    const response = cleanMAXResponse(await predict(this.state.textInput))
-    console.log(response)
+    const response = await predict(this.state.textInput)
     this.setState({
       ...initialState,
       MAXOutput: response
@@ -58,13 +58,11 @@ class App extends Component {
         
         <TextIO 
           inputValue={ this.state.textInput }
-          MAXOutput={ this.state.MAXOutput }
+          MAXOutput={ this.state.MAXOutput ? cleanMAXResponse(this.state.MAXOutput) : null }
           handleChange={ this.handleTextChange }
           handleSubmit={ this.handleTextSubmit } />
 
-        <code>
-          { JSON.stringify(this.state.MAXOutput) }
-        </code>
+          <RawOutput data={ this.state.MAXOutput }/>
 
       </div>
     )
