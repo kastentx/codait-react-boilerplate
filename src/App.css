@@ -1,5 +1,6 @@
 .App-logo {
   height: 40vmin;
+  margin-bottom: 5%;
 }
 
 .App-content {
@@ -16,18 +17,6 @@
 
 .App-link {
   color: #61dafb;
-}
-
-.topRow {
-  margin: 0;
-}
-
-.midRow {
-  margin-top: 2%;
-}
-
-.bottomRow {
-  margin-top: 2%;
 }
 
 textarea {
