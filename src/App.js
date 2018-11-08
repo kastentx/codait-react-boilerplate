@@ -5,6 +5,12 @@ import TextInput from './components/TextInput'
 import { predict, cleanMAXResponse, modelCheck } from './utils'
 import './App.css'
 
+/* specify path to logo image here */
+import codaitLogo from './codait-logo.png'
+
+/* specify localhost port for MAX Model here */
+const MAX_MODEL_PORT = 5000
+
 const initialState = {
   textInput: '',
   MAXOutput: ''
@@ -43,9 +49,13 @@ class App extends Component {
     return (
       <div className="App-content">
 
-        <LogoImage />
+        <LogoImage 
+          image={ codaitLogo }/>
 
-        <ModelData modelType={ this.state.modelType } />
+        <ModelData 
+          modelType={ this.state.modelType } 
+          modelPort={ MAX_MODEL_PORT }
+        />
 
         <TextInput 
           inputValue={ this.state.textInput }
