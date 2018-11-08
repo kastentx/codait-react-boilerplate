@@ -18,7 +18,10 @@ const TextInput = props => (
               onChange={ props.handleChange } />
           
           <Row>
-            <Button type="submit">
+            <Button
+              color="primary"
+              style={ { margin: '5% auto auto auto' } }
+              type="submit">
               Submit
             </Button>
           </Row>

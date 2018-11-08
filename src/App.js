@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import ModelData from './components/ModelData'
 import LogoImage from './components/LogoImage'
 import TextIO from './components/TextIO'
+import ImageIO from './components/ImageIO'
 import RawOutput from './components/RawOutput'
-import { predict, cleanMAXResponse, modelCheck } from './utils'
+import { predict, imagePredict, cleanMAXResponse, modelCheck } from './utils'
 import './App.css'
 
 /* specify path to logo image here */
@@ -12,9 +13,12 @@ import codaitLogo from './codait-logo.png'
 /* specify localhost port for MAX Model here */
 const MAX_MODEL_PORT = 5000
 
+/* specify maximum input image size here (for scaling) */
+const IMAGE_SIZE = 513
+
 const initialState = {
-  textInput: '',
-  MAXOutput: ''
+  imageInput: '',
+  textInput: ''
 }
 
 class App extends Component {
@@ -45,6 +49,13 @@ class App extends Component {
     })
   }
 
+  handleImageSubmit = async (imageBlob) => {
+    const response = await imagePredict(imageBlob)
+    this.setState({
+      MAXOutput: response
+    })
+  }
+
   render() {
     return (
       <div className="App-content">
@@ -55,14 +66,25 @@ class App extends Component {
         <ModelData 
           modelType={ this.state.modelType } 
           modelPort={ MAX_MODEL_PORT } />
-        
+
+        <ImageIO
+          imageSize={ IMAGE_SIZE }
+          imagePreview={ this.state.imageInput }
+          handleSubmit={ this.handleImageSubmit }
+          setImageInput={ newImage =>
+            this.setState({ 
+              imageInput: newImage,
+              MAXOutput: ''
+            })
+          } />
+
         <TextIO 
           inputValue={ this.state.textInput }
           MAXOutput={ this.state.MAXOutput ? cleanMAXResponse(this.state.MAXOutput) : null }
           handleChange={ this.handleTextChange }
           handleSubmit={ this.handleTextSubmit } />
 
-          <RawOutput data={ this.state.MAXOutput }/>
+        <RawOutput data={ this.state.MAXOutput }/>
 
       </div>
     )

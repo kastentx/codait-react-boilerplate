@@ -15,24 +15,18 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-textarea {
-  height: 25vh !important;
-  width: 25vw !important;
-  margin: auto !important;
-}
-
 .textIO {
   margin-top: 2%;
 }
 
-#outputArea {
-  cursor: default;
+.imageIO {
+  margin-top: 2%;
 }
 
-button {
-  margin: 5% auto !important;
+.imageInput {
+  margin-top: 2%;
+}
+
+.rawOutput {
+  margin: 2%
 }

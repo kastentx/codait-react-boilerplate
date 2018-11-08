@@ -6,6 +6,20 @@ export const isEmpty = obj => !isNonEmpty(obj)
 
 export const cleanMAXResponse = response => response.data.prediction
 
+export const getScaledSize = ({ height, width, imageSize }) => {
+  if (width > height) {
+    return {
+      scaledWidth: imageSize,
+      scaledHeight: Math.round((height / width) * imageSize)
+    }
+  } else {
+    return {
+      scaledWidth: Math.round((width / height) * imageSize),
+      scaledHeight: imageSize
+    }
+  }
+}
+
 export const modelCheck = (modelPort=5000, modelIP='localhost') => (
   axios({
     method: 'get',
@@ -23,10 +37,10 @@ export const predict = (text, modelPort=5000, modelIP='localhost') => (
   })
 )
 
-export const imgPredict = (img, modelPort=5000, modelIP='localhost') => {
+export const imagePredict = (image, modelPort=5000, modelIP='localhost') => {
   let bodyFormData = new FormData()
-  bodyFormData.set('image', img)
-  bodyFormData.set('type', img.content_type)
+  bodyFormData.set('image', image)
+  bodyFormData.set('type', image.content_type)
 
   return axios({
     method: 'post',
