@@ -1,12 +1,36 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MAX Model Boilerplate Web App 
+## `React` edition
 
-This is a simple UI with text-based I/O for interacting with Models from the [Model Asset eXchange](https://developer.ibm.com/code/exchanges/models/).
 
-The name and description of the model is displayed via the `metadata` endpoint used in **MAX** deployable models.
+This is a React App with a basic UI for interacting with Models from the [Model Asset eXchange](https://developer.ibm.com/code/exchanges/models/).
 
-_Image-based input isn't supported yet.. but should be easy to add!_
+This app assumes you are also running a deep learning from the **Model Asset eXchange** on port `5000` (the default port used by MAX Models). These models can run in either local or container environments, but make sure to specify `-e CORS_ENABLE=true` to set the proper environment variables to allow cross-origin requests if your model is running in a Docker container.
+
+### Starting the App
+
+You will know right away if the boilerplate app can communicate with your MAX Model. If it can, you will see the name and description of the current model (which is taken from the `metadata` endpoint), like this:
+
+![model display](./src/model-display.png)
+
+If the app can't communicate with your MAX Model, you will see this message:
+
+![no model](./src/no-model.png)
+
+### Sending Input to the Model
+
+Input may be provided in _either text or image form_, **depending on the needs of the MAX Model you are using.**
+
+By default, _both_ are displayed in the app, but feel free to remove/edit either the `TextIO` or `ImageIO` components as needed.
+
+### Receiving Output from the Model
+
+Output from the MAX Model comes in JSON format, which is stored in the application's state and can be displayed directly on the page with the `RawOutput` component. (using [React Dev Tools](https://github.com/facebook/react-devtools) is **strongly recommended** when debugging React apps)
 
 ![sample screenshot](./src/sample-screen.png)
+
+#### More `React`-related info...
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
