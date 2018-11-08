@@ -1,10 +1,9 @@
 import React from 'react'
-import { Row, FormText } from 'reactstrap'
-import logo from '../codait-logo.png'
+import { Row } from 'reactstrap'
 
-const LogoImage = () => (
+const LogoImage = props => (
   <Row className="topRow">
-      <img src={ logo } className="App-logo" alt="logo" />
+      <img src={ props.image } className="App-logo" alt="logo" />
   </Row>
 )
 
