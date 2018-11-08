@@ -1,31 +1,30 @@
 import React from 'react'
-import { Row, FormText } from 'reactstrap'
-
 
 const ModelData = props => (
   props.modelType ? 
     <div>
-      <Row className="midRow">
-        { props.modelType.name }
-      </Row>
-      <Row>
-        <FormText>
-          { props.modelType.description }
-        </FormText>
-      </Row>  
+      <h2>
+        <span style={ { color: 'darkTurquoise' } }>
+          { `MAX Model: `}
+        </span> 
+        <span style={ { color: 'white' } }>
+          { props.modelType.name }
+        </span>
+      </h2>
+      <h4 style={ { color: '#706e6f' } }>
+        { props.modelType.description }
+      </h4>
     </div>
   :
-    <div>
-      <Row>
-        {`No MAX Model found running at Port ${5000444}`}
-      </Row>
-      <Row>
-        <FormText>
-          { `If the model is running on another port, edit the value in ` }
-          <code>App.js</code>
-          { ` and reload.` }
-        </FormText>
-      </Row>
+    <div>  
+      <h2>
+        {`No MAX Model found running at Port ${ props.modelPort }.`}
+      </h2>
+      <h4 style={ { color: '#706e6f' } }>
+        { `If the model is running on another port, edit the value in ` }
+        <code>App.js</code>
+        { ` and reload.` }
+      </h4>
     </div>  
 )
 
