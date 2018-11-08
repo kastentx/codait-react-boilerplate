@@ -1,4 +1,4 @@
-import { Row, Col, Form, FormGroup, Input, Label, Button, FormText, Container } from 'reactstrap'
+import { Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap'
 import React from 'react'
 
 const TextInput = props => (
@@ -29,19 +29,6 @@ const TextInput = props => (
         </Form>
       </Col>
 
-      <Col>
-        <Form>
-          <FormGroup>
-            <Label for="outputArea">Model Output</Label>
-            <Input 
-              type="textarea" 
-              name="text" 
-              id="outputArea" 
-              value={ props.MAXOutput ? JSON.stringify(props.MAXOutput) : '' }
-              readOnly />
-          </FormGroup>
-        </Form>
-      </Col>
     </Row>  
   </div>
 )
