@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ModelData from './components/ModelData'
 import LogoImage from './components/LogoImage'
-import TextInput from './components/TextInput'
+import TextIO from './components/TextIO'
 import { predict, cleanMAXResponse, modelCheck } from './utils'
 import './App.css'
 
@@ -54,15 +54,17 @@ class App extends Component {
 
         <ModelData 
           modelType={ this.state.modelType } 
-          modelPort={ MAX_MODEL_PORT }
-        />
-
-        <TextInput 
+          modelPort={ MAX_MODEL_PORT } />
+        
+        <TextIO 
           inputValue={ this.state.textInput }
           MAXOutput={ this.state.MAXOutput }
           handleChange={ this.handleTextChange }
-          handleSubmit={ this.handleTextSubmit } 
-        />
+          handleSubmit={ this.handleTextSubmit } />
+
+        <code>
+          { JSON.stringify(this.state.MAXOutput) }
+        </code>
 
       </div>
     )

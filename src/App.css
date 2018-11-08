@@ -1,6 +1,6 @@
 .App-logo {
   height: 40vmin;
-  margin-bottom: 5%;
+  margin-bottom: 2%;
 }
 
 .App-content {
@@ -20,9 +20,13 @@
 }
 
 textarea {
-  resize: none !important;
-  height: 20vh !important;
+  height: 25vh !important;
+  width: 25vw !important;
   margin: auto !important;
+}
+
+.textIO {
+  margin-top: 2%;
 }
 
 #outputArea {
